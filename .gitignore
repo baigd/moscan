@@ -1,0 +1,14 @@
+*.zip
+.idea
+scripts/log
+scripts/chrome-profile2
+scripts/chrome-profile5
+scripts/ttttttt.py
+scripts/RAM
+scripts/user_info
+scripts/Req
+scripts/Res
+scripts/Req2
+scripts/Res2
+scripts/__pycache__
+new_arch/db
