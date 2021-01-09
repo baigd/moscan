@@ -6,7 +6,7 @@ System: Ubuntu 18.04 system
    
    ```shell
    sudo apt install python3-pip
-sudo apt install git
+   sudo apt install git
    sudo apt-get install chromium-browser
    ```
    
@@ -15,7 +15,7 @@ sudo apt install git
 2. Install mitmproxy
    
    ```shell
-pip3 install --user mitmproxy
+    pip3 install --user mitmproxy
    ```
    
    The --user option is essential.
@@ -157,16 +157,16 @@ pip3 install --user mitmproxy
 
    You can put testing RP into `scripts/checker.py`
 
-   ![](pic\pic15.PNG)
+   ![](pic/pic15.PNG)
 
    You can change the testing IdP in `scripts/main.py`
 
-   ![](pic\pic16.PNG)
+   ![](pic/pic16.PNG)
 
 If you want to do other CSRF attacks, you can change the code in the CSRF part of `scripts/main.py`. We have realized most common parameter substitution methods for SSO testing.
 
-![](pic\pic17.PNG)
+![](pic/pic17.PNG)
 
 You can add your username into our code, so that we can detect if the login succeed.
 
-![](pic\pic18.PNG)
+![](pic/pic18.PNG)
