@@ -1,4 +1,3 @@
-# HTTP lifecycle
 import mitmproxy
 from logger import Log
 import checker
@@ -88,14 +87,13 @@ def response(flow: mitmproxy.http.HTTPFlow):
     # check if user info is shown, if so, login successfully
     if cur_state.state == 3:
         content = flow.response.text
-        # string of username and its variation, like
+        # string of username and its variation
+        # facebook
         # user_info = ["Ross", "David", "ross", "david", "rossdavid", "RossDavid"]
-        if IdP == "facebook.com":
-            user_info = serialize.readbunchobj("user_info/fb_user_info")
-            user_info2 = serialize.readbunchobj("user_info/fb_user_info2")
-        if IdP == "api.twitter.com":
-            user_info = serialize.readbunchobj("user_info/twitter_user_info")
-            user_info2 = serialize.readbunchobj("user_info/twitter_user_info2")
+        # user_info2 = [similar to above]
+        # twitter
+        user_info = ["your twitter account1 name for test"]
+        user_info2 = ["your twitter account2 name for test"]
         keywords = checker.contain_user_info(content, user_info)
         keywords2 = checker.contain_user_info(content, user_info2)
         if keywords:

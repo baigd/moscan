@@ -4,12 +4,12 @@ from logger import Log
 
 """
 state
-0: 尚未开始
-1: 检测到目标网站的流量
-2: 检测到facebook授权的流量
-3: 再次检测到目标网站的流量
-4: 成功登录
-5: 长时间未检测到成功登录
+0: Before start
+1: detect the RP website's message
+2: detect the IdP website's message for authorization
+3: detect the RP website's message again
+4: log in successfully
+5: timeout
 """
 
 

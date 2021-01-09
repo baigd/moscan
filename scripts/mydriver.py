@@ -4,14 +4,12 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-# driver version: 78.0.3904.105
-# the driver version (78.0.3904.xxx) should be the same as the Chrome browser in your computer
+# the driver version (e.g. 78.0.3904.xxx) should be the same as the Chrome browser in your computer
 """
 an efficient way to open a browser instance
 """
 def efficientChrome(test=True, dir=None, proxy=None):
     chrome_options = Options()
-    # chrome_options.add_argument('blink-settings=imagesEnabled=false') # forbid loading image
     if not proxy:
         chrome_options.add_argument('--no-proxy-server')
     else:
