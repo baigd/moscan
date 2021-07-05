@@ -74,8 +74,9 @@ def response(flow: mitmproxy.http.HTTPFlow):
 
     # check if state parameters shown at after state 2 
     if cur_state.state > 0 and cur_state.state < 4 and checker.contain_state(flow):
+        if not cur_state.already_found_state_para():
+            logger.write_info("found state= at state " + str(cur_state.state))
         cur_state.confirm_state_para()
-        logger.write_info("found state= at state " + str(cur_state.state))
 
     # check if state parameters shown at after state 2
     if cur_state.state > 2 and cur_state.timeout() and not cur_state.state_para_checked:
@@ -89,11 +90,11 @@ def response(flow: mitmproxy.http.HTTPFlow):
         content = flow.response.text
         # string of username and its variation
         # facebook
-        # user_info = ["Ross", "David", "ross", "david", "rossdavid", "RossDavid"]
-        # user_info2 = [similar to above]
+        user_info = ["Ross", "David", "ross", "david", "rossdavid", "RossDavid"]
+        user_info2 = ["Alice", "Nus", "alice", "nus", "alicenus", "AliceNus"]
         # twitter
-        user_info = ["your twitter account1 name for test"]
-        user_info2 = ["your twitter account2 name for test"]
+        # user_info = ["tamaxi"]
+        # user_info2 = ["Zhang"]
         keywords = checker.contain_user_info(content, user_info)
         keywords2 = checker.contain_user_info(content, user_info2)
         if keywords:
@@ -131,14 +132,14 @@ def response(flow: mitmproxy.http.HTTPFlow):
         CSRF.csrf_substitude_header(target, flow)
 
     if "api.twitter.com" in flow.request.pretty_url:
-        # target = "oauth_verifier="
-        # CSRF.csrf_substitude_code_in_text(target, flow)
+        target = "oauth_verifier="
+        CSRF.csrf_substitude_code_in_text(target, flow)
 
         target = "state="
         CSRF.csrf_substitude_code_in_text(target, flow)
 
-        # if checker.check_host(flow):
-        #     CSRF.csrf_substitude_code_in_location("oauth_token=", flow)
+        if checker.check_host(flow):
+            CSRF.csrf_substitude_code_in_location("oauth_token=", flow)
 
 
 def error(flow: mitmproxy.http.HTTPFlow):

@@ -71,6 +71,11 @@ class State():
     def confirm_state_para(self):
         self.have_state_para.add(self.state)
 
+    def already_found_state_para(self):
+        if self.state in self.have_state_para:
+            return True
+        return False
+
     def check_state_para(self):
         self.state_para_checked = True
         if self.have_state_para == {1, 2, 3}:

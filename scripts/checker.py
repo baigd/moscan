@@ -67,6 +67,11 @@ def contain_state(flow: mitmproxy.http.HTTPFlow):
         if query.startswith("state=") and len(query) > 20:
             return True
     # state may in Location of cookies
+    if "location" in flow.response.headers.keys():
+        queries = urlparse(flow.response.headers["location"]).query.split("&")
+        for query in queries:
+            if query.startswith("state=") and len(query) > 20:
+                return True
     if "Location" in flow.response.headers.keys():
         queries = urlparse(flow.response.headers["Location"]).query.split("&")
         for query in queries:
@@ -74,6 +79,8 @@ def contain_state(flow: mitmproxy.http.HTTPFlow):
                 return True
     # state may in body
     try:
+        if flow.response.text.find("state="):
+            return True
         if flow.request.text.find("&") > -1:
             queries = flow.request.text.split("&")
             for query in queries:
